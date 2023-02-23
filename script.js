@@ -11,7 +11,7 @@ function areCandidateResultsValid() {
 // Chamando a função com os parametros recebidos via script de teste
 // e atribuindo a variavel que devera ser mostrada no console
 const areCandidateValid = areCandidateResultsValid(
-    process.argv[2], // Genero
+    process.argv[2], // Generoo
     process.argv[3], // Altura
     process.argv[4], // Repetições de barra
     process.argv[5], // Tempo de barra em segundos
