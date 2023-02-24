@@ -1,76 +1,71 @@
 // Implemente aqui as funções
-
-// if(( //Vamos fazer primeiro a restrição do sexo masculino
-//     (gender==="male" && height>=1.70 && abs>=41) //Homem, pelo menos 1,70m E pelo menos 41 abdominais
-//     && (barReps>=6 || barSeconds<=15)  //pelo menos 6 repetições na barra OU no máximo 15 segundos
-//     && ((runDistance>=3000 && runTime<=720) || (runDistance>=5000 && runTime<=1200)) //pelo menos 3000m em no máximo 720s OU pelo menos 5000 metros em no máximo 1200s
-//     && ((swimDistance>=100 && swimTime<=60) || diveTime<=30) //nadou no mínimo 100 metros em no máximo 60s OU no máximo 30 segundos de mergulho
-//     )
-//      || ( //Agora, vamos fazer a restrição do sexo feminino
-//         (gender==="female" && height>=1.60 && abs>=41) //Mulher, pelo menos 1,60m E pelo menos 41 abdominais 
-//         && (barReps>=5 || barSeconds<=12) //pelo menos 5 repetições na barra OU no máximo 12 segundos
-//         && ((runDistance>=4000 && runTime<=900) || (runDistance>=6000 && runTime<=1320)) //pelo menos 4000m em no máximo 900s OU pelo menos 6000 metros em no máximo 1320s
-//         && ((swimDistance>=100 && swimTime<=60) || diveTime<=30) //nadou no mínimo 100 metros em no máximo 60s OU no máximo 30 segundos de mergulho
-//         )){
-//     passed=true;
-// }else{
-
-// }
-
 // Height
-function heightValidation(gender, height){
-    if(((gender==="male") && (height>=1.70)) || ((gender==="female") && (height>=1.60))){
+function heightValidation(genderParameter, heightParameter){
+    if(((genderParameter==="male") && (heightParameter>=1.70)) || ((genderParameter==="female") && (heightParameter>=1.60))){
         return "TRUE"
     }
     return "FALSE"
 }
 
 // Abs
-function absValidation(abs){
-    if((abs>=41)){
+function absValidation(absParameter){
+    if((absParameter>=41)){
         return "TRUE"
     }
     return "FALSE"
 }
 
 // Swim
-function swimValidation(swimDistance, swimTime, diveTime){
-    if((((swimDistance>=100 && swimTime<=60) || diveTime<=30))){
+function swimValidation(swimDistanceParameter, swimTimeParameter, diveTimeParameter){
+    if((((swimDistanceParameter>=100 && swimTimeParameter<=60) || diveTimeParameter<=30))){
         return "TRUE"
     }
     return "FALSE"
 }
 
 // BarTest
-function barTestValidation(gender, barReps, barSeconds){
-    if(((gender==="male") && (barReps>=6 || barSeconds<=15)) || ((gender==="female") && (barReps>=5 || barSeconds<=12))){
+function barTestValidation(genderParameter, barRepsParameter, barSecondsParameter){
+    if(((genderParameter==="male") && (barRepsParameter>=6 || barSecondsParameter<=15)) || ((genderParameter==="female") && (barRepsParameter>=5 || barSecondsParameter<=12))){
         return "TRUE"
     }
     return "FALSE"
 }
 
 // Run
-function runValidation(gender, runDistance, runTime){
-    if(((gender="male") && ((runDistance>=3000 && runTime<=720) || (runDistance>=5000 && runTime<=1200))) || ((gender="female") && ((runDistance>=4000 && runTime<=900) || (runDistance>=6000 && runTime<=1320)))){
+function runValidation(genderParameter, runDistanceParameter, runTimeParameter){
+    if(
+        (((genderParameter === "male") && ((runDistanceParameter>=3000 && runTimeParameter<=720))) || ((genderParameter === "male") && (runDistanceParameter>=5000 && runTimeParameter<=1200))) ||
+        (((genderParameter === "female") && ((runDistanceParameter>=4000 && runTimeParameter<=900))) || ((genderParameter === "female") && (runDistanceParameter>=6000 && runTimeParameter<=1320)))
+    ){
         return "TRUE"
     } 
     return "FALSE"
 }
 
 
-// gender, height, barReps, barSeconds, abs, runDistance, runTime, swimDistance, swimTime, diveTime
-function areCandidateResultsValid(gender, height, barReps, barSeconds, abs, runDistance, runTime, swimDistance, swimTime, diveTime) {
+function areCandidateResultsValid(genderParameter2, heightParameter2, barRepsParameter2, barSecondsParameter2, absParameter2, runDistanceParameter2, runTimeParameter2, swimDistanceParameter2, swimTimeParameter2, diveTimeParameter2) {
     if( 
-    (heightValidation(gender, height) === "TRUE") &&
-    (absValidation(abs) === "TRUE") && 
-    (swimValidation(swimDistance, swimTime, diveTime) === "TRUE") &&
-    (runValidation(gender, runDistance, runTime) === "TRUE") &&
-    (barTestValidation(gender, barReps, barSeconds) === "TRUE") 
+    (heightValidation(genderParameter2, heightParameter2) == "TRUE") &&
+    (absValidation(absParameter2) == "TRUE") && 
+    (swimValidation(swimDistanceParameter2, swimTimeParameter2, diveTimeParameter2) == "TRUE") &&
+    (runValidation(genderParameter2, runDistanceParameter2, runTimeParameter2) == "TRUE") &&
+    (barTestValidation(genderParameter2, barRepsParameter2, barSecondsParameter2) == "TRUE") 
     ){
     return "TRUE"} else{
         return "FALSE"
     }
 }
+
+    let gender = process.argv[2] // Genero
+    let height = process.argv[3] // Altura
+    let barReps = process.argv[4] // Repetições de barra
+    let barSeconds = process.argv[5] // Tempo de barra em segundos
+    let abs = process.argv[6] // Abdominais
+    let runDistance = process.argv[7] // Distancia percorrida em metros
+    let runTime = process.argv[8] // Tempo total da corrida em segundos
+    let swimDistance = process.argv[9] // Distancia do nado em metros
+    let swimTime = process.argv[10] // Tempo total de nado em segundos
+    let diveTime = process.argv[11] // Tempo total de mergulho em segundos
 
 // Chamando a função com os parametros recebidos via script de teste
 // e atribuindo a variavel que devera ser mostrada no console
@@ -92,5 +87,4 @@ const areCandidateValid = areCandidateResultsValid(
 //     console.log(message)
 // }
 
-
-console.log(areCandidateResultsValid())
+console.log(areCandidateResultsValid(gender, height, barReps, barSeconds, abs, runDistance, runTime, swimDistance, swimTime, diveTime))
