@@ -79,7 +79,7 @@ const areCandidateValid = areCandidateResultsValid(
 let results = areCandidateResultsValid(
     gender, height, barReps, barSeconds, abs, runDistance, runTime, swimDistance, swimTime, diveTime
 )
-let resultss = results.toString()
-console.log(resultss.toUpperCase())
+let stringedResults = results.toString()
+console.log(stringedResults.toUpperCase())
 
 
